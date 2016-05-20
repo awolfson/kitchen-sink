@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '5.0.0.rc1'
+gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails'
@@ -26,9 +27,12 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'fuubar'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
 end
 
 group :production do
