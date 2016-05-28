@@ -3,6 +3,8 @@ ruby '2.3.1'
 
 gem 'rails', '5.0.0.rc1'
 gem 'sqlite3'
+gem 'haml-rails'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails'
@@ -19,7 +21,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'guard-rspec', require: false
   gem 'spring-commands-rspec'
   gem 'annotate'
   gem 'thin'
@@ -29,10 +30,15 @@ end
 group :test do
   gem 'shoulda-matchers'
   gem 'fuubar'
+  gem 'capybara'
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec', '~> 3.5.0.beta1'
+  gem 'rspec-core', '~> 3.5.0.beta1'
+  gem 'rspec-rails', '~> 3.5.0.beta1'
+  gem 'guard-rspec', '~> 4.6', require: false
+  gem 'rails-controller-testing'
 end
 
 group :production do
