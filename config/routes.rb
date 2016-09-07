@@ -1,4 +1,6 @@
 KitchenSink::Application.routes.draw do
+  resources :authors
+  resources :books
   resources :tasks
   resources :projects
   # The priority is based upon order of creation:
