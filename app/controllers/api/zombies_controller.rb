@@ -1,13 +1,16 @@
 module API
   class ZombiesController < ApplicationController
     def index
-      zombies = Zombie.all
+      @zombies = Zombie.all
 
       if weapon = params[:weapon]
-        zombies = zombies.where(weapon: weapon)
+        @zombies = @zombies.where(weapon: weapon)
       end
 
-      render json: zombies, status: :ok
+      respond_to do |format|
+        format.xml  { render xml:  @zombies, status: :ok }
+        format.any  { render "index.json.jbuilder" }
+      end
     end
 
     def show

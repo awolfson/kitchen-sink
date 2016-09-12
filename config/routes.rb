@@ -9,6 +9,7 @@ KitchenSink::Application.routes.draw do
   namespace :api, path: '/', constraints: { subdomain: 'api' } do
     resources :zombies, only: [:index, :show]
     resources :humen,   except: [:destroy, :edit, :update]
+    resources :episodes
   end
 
   # The priority is based upon order of creation:
