@@ -12,6 +12,25 @@ module API
       end
     end
 
+    def update
+      episode = Episode.find(params[:id])
+      if episode.update(episode_params)
+        render json: episode, status: :ok
+      else
+        render json: episode.errors, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      # episode = Episode.find(params[:id])
+      episode = Episode.find_unarchived(params[:id])
+
+      # episode.destroy
+      episode.archive
+
+      head :no_content
+    end
+
     private
 
     def episode_params
