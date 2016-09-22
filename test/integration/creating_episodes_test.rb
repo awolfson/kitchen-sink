@@ -6,9 +6,9 @@ class CreatingEpisodesTest < ActionDispatch::IntegrationTest
   end
 
   test 'creates episodes' do
-    post '/episodes',
+    post '/v1/episodes',
       params: { episode:
-                { title: 'Bananas', description: 'Learn about bananas.' }
+                { title: "It's Bananas", description: 'Learn about bananas.' }
               }.to_json,
       headers: { 'Accept' => Mime[:json], 'Content-Type' => Mime[:json].to_s }
 
@@ -16,11 +16,11 @@ class CreatingEpisodesTest < ActionDispatch::IntegrationTest
     assert_equal Mime[:json], response.content_type
 
     episode = json(response.body)
-    assert_equal api_episode_url(episode[:id]), response.location
+    assert_equal api_v1_episode_url(episode[:id]), response.location
   end
 
   test 'does not create episodes with title nil' do
-    post '/episodes',
+    post '/v1/episodes',
       params: { episode:
                 { title: nil, description: 'Learn about bananas.' }
               }.to_json,

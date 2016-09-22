@@ -8,7 +8,7 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns list of all zombies' do
-    get '/zombies'
+    get '/v1/zombies'
 
     assert_equal 200, response.status
     assert response.success?
@@ -17,7 +17,7 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns zombies filtered by weapon' do
-    get '/zombies?weapon=axe'
+    get '/v1/zombies?weapon=axe'
     assert_equal 200, response.status
 
     zombies = json(response.body)
@@ -28,7 +28,7 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns zombie by id' do
-    get "/zombies/#{@zombie.id}"
+    get "/v1/zombies/#{@zombie.id}"
     assert_equal 200, response.status
 
     zombie_response = json(response.body)
@@ -36,21 +36,21 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns zombies in JSON' do
-    get '/zombies', params: {}, headers: { 'Accept' => Mime[:json] }
+    get '/v1/zombies', params: {}, headers: { 'Accept' => Mime[:json] }
 
     assert_equal 200, response.status
     assert_equal Mime[:json], response.content_type
   end
 
   test 'returns zombies in XML' do
-    get '/zombies', params: {}, headers: { 'Accept' => Mime[:xml] }
+    get '/v1/zombies', params: {}, headers: { 'Accept' => Mime[:xml] }
 
     assert_equal 200, response.status
     assert_equal Mime[:xml], response.content_type
   end
 
   test 'returns list of zombies in english' do
-    get '/zombies', params: {}, headers: { 'Accept-Language' => 'en', 'Accept' => Mime[:json] }
+    get '/v1/zombies', params: {}, headers: { 'Accept-Language' => 'en', 'Accept' => Mime[:json] }
     assert_equal 200, response.status
 
     zombies = json(response.body)
@@ -58,7 +58,7 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns list of zombies in portuguese' do
-    get '/zombies', params: {}, headers: { 'Accept-Language' => 'pt-BR', 'Accept' => Mime[:json] }
+    get '/v1/zombies', params: {}, headers: { 'Accept-Language' => 'pt-BR', 'Accept' => Mime[:json] }
     assert_equal 200, response.status
 
     zombies = json(response.body)
@@ -66,8 +66,8 @@ class ListingZombiesTest < ActionDispatch::IntegrationTest
   end
 
   test 'returns list of zombies in english by default after returning list in another language' do
-    get '/zombies', params: {}, headers: { 'Accept-Language' => 'pt-BR', 'Accept' => Mime[:json] }
-    get '/zombies'
+    get '/v1/zombies', params: {}, headers: { 'Accept-Language' => 'pt-BR', 'Accept' => Mime[:json] }
+    get '/v1/zombies'
 
     assert_equal 200, response.status
 

@@ -7,7 +7,7 @@ class DeletingEpisodesTest < ActionDispatch::IntegrationTest
   end
 
   test "deletes existing episode" do
-    delete api_episode_path(@episode)
+    delete api_v1_episode_path(@episode)
     # delete "/episodes/#{@episode.id}"
 
     assert_equal 204, response.status

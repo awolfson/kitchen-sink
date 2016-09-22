@@ -7,7 +7,7 @@ class UpdatingEpisodesTest < ActionDispatch::IntegrationTest
   end
 
   test "successful update" do
-    patch "/episodes/#{@episode.id}",
+    patch "/v1/episodes/#{@episode.id}",
       params: { episode: { title: "First Title Edit"} }.to_json,
       headers: { "Accept" => Mime[:json], "Content-Type" => Mime[:json].to_s }
 
@@ -16,7 +16,7 @@ class UpdatingEpisodesTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful update on short title" do
-    patch "/episodes/#{@episode.id}",
+    patch "/v1/episodes/#{@episode.id}",
       params: { episode: { title: "Short"} }.to_json,
       headers: { "Accept" => Mime[:json], "Content-Type" => Mime[:json].to_s }
 

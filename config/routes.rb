@@ -7,9 +7,14 @@ KitchenSink::Application.routes.draw do
   # Surviving APIs with Rails
 
   namespace :api, path: '/', constraints: { subdomain: 'api' } do
-    resources :zombies, only: [:index, :show]
-    resources :humen,   except: [:destroy, :edit, :update]
-    resources :episodes
+    namespace :v1 do
+      resources :zombies, only: [:index, :show]
+      resources :humen,   except: [:destroy, :edit, :update]
+      resources :episodes
+    end
+    namespace :v2 do
+      resources :zombies
+    end
   end
 
   # The priority is based upon order of creation:
