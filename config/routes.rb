@@ -8,12 +8,13 @@ KitchenSink::Application.routes.draw do
 
   namespace :api, path: '/', constraints: { subdomain: 'api' } do
     namespace :v1 do
-      resources :zombies, only: [:index, :show]
+      resources :zombies, only: [:index, :show, :get]
       resources :humen,   except: [:destroy, :edit, :update]
       resources :episodes
     end
     namespace :v2 do
       resources :zombies
+      resources :episodes
     end
   end
 

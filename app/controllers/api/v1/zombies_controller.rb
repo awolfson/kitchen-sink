@@ -1,6 +1,6 @@
 module API
   module V1
-    class ZombiesController < ApplicationController
+    class ZombiesController < ApiController
       def index
         @zombies = Zombie.all
 
